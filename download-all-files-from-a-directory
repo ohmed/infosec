@@ -1,0 +1,35 @@
+Using wget
+  wget -r -A "*.jpg" http://example.com/images/
+  
+Using curl
+  curl "http://example.com/images/ABC[0000-9999].jpg" -o "ABC#1.jpg"
+  
+      According to man curl:
+
+      You can specify multiple URLs or parts of URLs by writing part sets within braces as in:
+
+      http://site.{one,two,three}.com
+
+      or you can get sequences of alphanumeric series by using [] as in:
+
+      ftp://ftp.numericals.com/file[1-100].txt
+
+      ftp://ftp.numericals.com/file[001-100].txt (with leading zeros)
+
+      ftp://ftp.letters.com/file[a-z].txt
+
+      And explanation for #1:
+
+      -o, --output <file>
+
+      Write output to instead of stdout. If you are using {} or [] to fetch multiple documents, you can use '#' followed by a number in the specifier. That variable will be replaced with the current string for the URL being fetched. Like in:
+
+      curl http://{one,two}.site.com -o "file_#1.txt"
+
+      or use several variables like:
+
+      curl http://{site,host}.host[1-5].com -o "#1_#2"
+
+      You may use this option as many times as the number of URLs you have.
+
+      See also the --create-dirs option to create the local directories dynamically. Specifying the output as '-' (a single dash) will force the output to be done to stdout.
